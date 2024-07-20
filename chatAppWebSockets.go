@@ -39,7 +39,7 @@ func (s *Server) readLoop(ws *websocket.Conn) {
 		}
 		msg := buf[:n]
 		fmt.Println(string(msg))
-		ws.Write([]byte("thank you for the message."))
+		ws.Write([]byte("thank you for the message!!"))
 	}
 }
 
