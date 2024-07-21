@@ -19,7 +19,7 @@ func NewServer() *Server{
 }
 
 func (s *Server) handleWS(ws *websocket.Conn){
-	fmt.Println("new incoming connection from client", ws.RemoteAddr())
+	fmt.Println("new incoming connection from client:", ws.RemoteAddr())
 
 	s.conns[ws] = true
 
@@ -45,6 +45,7 @@ func (s *Server) readLoop(ws *websocket.Conn) {
 
 func main() {
 	server := NewServer()
-	http.Handle("/ws", websocket.Handler(server.handleWS()))
+	http.Handle("/ws", websocket.Handler(server.handleWS))
 	http.ListenAndServe(":3000", nil)
+	// fmt.Println("connected to port 3000.")
 }
